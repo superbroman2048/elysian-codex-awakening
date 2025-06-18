@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useInView, animate } from 'framer-motion';
 import { ArrowUp, ArrowDown, Menu, Phone, Mail, MapPin, Building, FlaskConical, BookOpen, Dumbbell, Bus, Utensils, Music, Drama, Brush, Mic, Target } from 'lucide-react';
@@ -98,7 +99,7 @@ const sectionVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut",
+      ease: [0.4, 0, 0.2, 1],
       staggerChildren: 0.2
     }
   }
@@ -163,7 +164,7 @@ const Header = () => {
             className="fixed top-10 left-0 right-0 z-40 transition-all duration-300"
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
         >
             <div className={`container mx-auto px-4 transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
                 <div className={`flex justify-between items-center bg-white/80 backdrop-blur-lg rounded-xl shadow-md transition-all duration-300 ${scrolled ? 'p-3' : 'p-5'}`}>
@@ -201,7 +202,7 @@ const Hero = () => {
             opacity: 1, 
             y: 0, 
             transition: { 
-                type: "spring", 
+                type: "spring" as const, 
                 damping: 12, 
                 stiffness: 100 
             } 
@@ -240,7 +241,7 @@ const Hero = () => {
                     className="mt-12 inline-block px-8 py-4 bg-red-600 text-white font-bold font-poppins rounded-lg text-lg shadow-lg shadow-red-600/30"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 2.5, type: "spring", stiffness: 150 }}
+                    transition={{ delay: 2.5, type: "spring" as const, stiffness: 150 }}
                     whileHover={{ scale: 1.05, boxShadow: '0px 0px 30px rgba(255, 0, 0, 0.6)' }}
                     whileTap={{ scale: 0.95 }}
                 >
