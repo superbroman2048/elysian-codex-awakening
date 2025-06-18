@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, animate } from 'framer-motion';
 import { ArrowUp, ArrowDown, Search, Menu, X, Phone, Mail, MapPin, Building, FlaskConical, BookOpen, Dumbbell, Bus, Utensils, Music, Drama, Brush, Mic, Target } from 'lucide-react';
 
 // --- DATA: All content for the school website ---
@@ -102,7 +103,7 @@ const sectionVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut",
+      ease: [0.4, 0, 0.2, 1], // Fixed: use array instead of string
       staggerChildren: 0.2
     }
   }
@@ -171,7 +172,7 @@ const Header = () => {
             className="fixed top-10 left-0 right-0 z-40 transition-all duration-300"
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }} // Fixed: use array
         >
             <div className={`container mx-auto px-4 transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
                 <div className={`flex justify-between items-center bg-white/80 backdrop-blur-lg rounded-xl shadow-md transition-all duration-300 ${scrolled ? 'p-3' : 'p-5'}`}>
@@ -207,7 +208,15 @@ const Hero = () => {
 
     const letter = {
         hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 12, stiffness: 100 } },
+        visible: { 
+            opacity: 1, 
+            y: 0, 
+            transition: { 
+                type: 'spring', 
+                damping: 12, 
+                stiffness: 100 
+            } 
+        },
     };
 
     return (
@@ -270,12 +279,13 @@ const About = () => {
         const [displayValue, setDisplayValue] = useState(0);
         useEffect(() => {
             if (isInView) {
-                const controls = motion.animate(0, value, {
+                // Fixed: use animate directly instead of motion.animate
+                const controls = animate(0, value, {
                     duration: 2,
-                    ease: "easeOut",
+                    ease: [0.4, 0, 0.2, 1], // Fixed: use array
                     onUpdate: (latest) => setDisplayValue(Math.round(latest))
                 });
-                return controls.stop;
+                return () => controls.stop();
             }
         }, [isInView, value]);
         return (
@@ -382,7 +392,7 @@ const Admissions = () => {
                           className="absolute top-0 bottom-0 left-[30px] w-0.5 bg-red-200"
                           initial={{ height: 0 }}
                           animate={{ height: isInView ? '100%' : 0 }}
-                          transition={{ duration: 1.5, ease: 'easeOut' }}
+                          transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }} // Fixed: use array
                         />
                         {admissionsData.steps.map((step, index) => (
                             <motion.div key={index} className="relative flex items-start mb-8" custom={index} variants={itemVariants}>
@@ -580,7 +590,7 @@ const Testimonials = () => {
 const Contact = () => (
     <Section id="contact" className="bg-beige">
         <SectionTitle>Get In Touch</SectionTitle>
-        <SectionSubtitle>We are here to answer your questions. Reach out to us and we’ll respond as soon as we can.</SectionSubtitle>
+        <SectionSubtitle>We are here to answer your questions. Reach out to us and we'll respond as soon as we can.</SectionSubtitle>
 
         <div className="grid lg:grid-cols-2 gap-16">
             <motion.div variants={itemVariants}>
@@ -611,7 +621,7 @@ const Contact = () => (
                 </div>
                 <div>
                     <label htmlFor="message" className="font-poppins font-semibold text-charcoal">Your Message</label>
-                    <textarea id="message" rows="5" className="w-full mt-2 p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition"></textarea>
+                    <textarea id="message" rows={5} className="w-full mt-2 p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition"></textarea>
                 </div>
                 <div>
                     <button type="submit" className="w-full px-8 py-4 bg-red-600 text-white font-bold font-poppins rounded-lg text-lg shadow-lg hover:bg-red-700 transition-colors">
