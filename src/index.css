@@ -37,7 +37,10 @@
 
     --radius: 0.5rem;
   }
-
+  /* Hide scrollbar for the helix effect */
+  [style*="scrollbar-width: none"]::-webkit-scrollbar {
+    display: none;
+  }
   * {
     @apply border-border;
   }
