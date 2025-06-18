@@ -1,10 +1,6 @@
-
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useInView, animate } from 'framer-motion';
-import { ArrowUp, ArrowDown, Search, Menu, X, Phone, Mail, MapPin, Building, FlaskConical, BookOpen, Dumbbell, Bus, Utensils, Music, Drama, Brush, Mic, Target } from 'lucide-react';
-
-// --- DATA: All content for the school website ---
-// You can easily replace this with real content, images, and links.
+import { motion, useScroll, useInView, animate } from 'framer-motion';
+import { ArrowUp, ArrowDown, Menu, Phone, Mail, MapPin, Building, FlaskConical, BookOpen, Dumbbell, Bus, Utensils, Music, Drama, Brush, Mic, Target } from 'lucide-react';
 
 const FWS_COLORS = {
   red: '#FF0000',
@@ -95,7 +91,6 @@ const testimonialsData = [
     { quote: "I love my school! We learn so much, and we get to play and do so many fun activities.", name: "Aisha Khan", role: "Student, Class 5", image: "https://placehold.co/100x100/CCCCCC/333?text=A" },
 ];
 
-// --- Animation Variants for Framer Motion ---
 const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
@@ -103,7 +98,7 @@ const sectionVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.4, 0, 0.2, 1], // Fixed: use array instead of string
+      ease: "easeOut",
       staggerChildren: 0.2
     }
   }
@@ -114,8 +109,6 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
-
-// --- Reusable Components ---
 const Section = ({ id, children, className = "" }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -148,8 +141,6 @@ const SectionSubtitle = ({ children }) => (
     </motion.p>
 );
 
-// --- Main App Sections ---
-
 const StickyTopBanner = () => (
     <div className="fixed top-0 left-0 right-0 z-50 bg-red-600 text-white text-center py-2 text-sm font-nunito shadow-lg">
         This website was created by Atharv Mishra from Class 12 at an AI Summer Camp by Times of India. This website is not the official website of the school.
@@ -172,12 +163,11 @@ const Header = () => {
             className="fixed top-10 left-0 right-0 z-40 transition-all duration-300"
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }} // Fixed: use array
+            transition={{ duration: 0.5, ease: "easeOut" }}
         >
             <div className={`container mx-auto px-4 transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
                 <div className={`flex justify-between items-center bg-white/80 backdrop-blur-lg rounded-xl shadow-md transition-all duration-300 ${scrolled ? 'p-3' : 'p-5'}`}>
                     <div className="font-poppins text-2xl font-bold text-red-600">
-                      {/* USER: Replace with your logo SVG or Image */}
                       Fortune World School
                     </div>
                     <nav className="hidden md:flex items-center gap-6 font-semibold font-nunito">
@@ -193,7 +183,6 @@ const Header = () => {
         </motion.header>
     );
 };
-
 
 const Hero = () => {
     const headline = "Empowering Young Minds Since 2012";
@@ -212,7 +201,7 @@ const Hero = () => {
             opacity: 1, 
             y: 0, 
             transition: { 
-                type: 'spring', 
+                type: "spring", 
                 damping: 12, 
                 stiffness: 100 
             } 
@@ -221,7 +210,6 @@ const Hero = () => {
 
     return (
         <section id="home" className="relative flex items-center justify-center min-h-screen bg-beige overflow-hidden pt-20">
-             {/* USER: Replace this div with a background video/image slideshow component later */}
             <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{backgroundImage: "url('https://placehold.co/1920x1080/F5F5DC/333333?text=FWS+Campus+View')"}}>
                 <div className="absolute inset-0 bg-black/40"></div>
             </div>
@@ -252,7 +240,7 @@ const Hero = () => {
                     className="mt-12 inline-block px-8 py-4 bg-red-600 text-white font-bold font-poppins rounded-lg text-lg shadow-lg shadow-red-600/30"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 2.5, type: 'spring', stiffness: 150 }}
+                    transition={{ delay: 2.5, type: "spring", stiffness: 150 }}
                     whileHover={{ scale: 1.05, boxShadow: '0px 0px 30px rgba(255, 0, 0, 0.6)' }}
                     whileTap={{ scale: 0.95 }}
                 >
@@ -279,10 +267,9 @@ const About = () => {
         const [displayValue, setDisplayValue] = useState(0);
         useEffect(() => {
             if (isInView) {
-                // Fixed: use animate directly instead of motion.animate
                 const controls = animate(0, value, {
                     duration: 2,
-                    ease: [0.4, 0, 0.2, 1], // Fixed: use array
+                    ease: "easeOut",
                     onUpdate: (latest) => setDisplayValue(Math.round(latest))
                 });
                 return () => controls.stop();
@@ -387,12 +374,11 @@ const Admissions = () => {
                 <div>
                     <h3 className="font-poppins text-3xl font-bold text-charcoal mb-8">Your Path to FWS</h3>
                     <div ref={ref} className="relative pl-8">
-                        {/* The connecting line */}
                         <motion.div 
                           className="absolute top-0 bottom-0 left-[30px] w-0.5 bg-red-200"
                           initial={{ height: 0 }}
                           animate={{ height: isInView ? '100%' : 0 }}
-                          transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }} // Fixed: use array
+                          transition={{ duration: 1.5, ease: "easeOut" }}
                         />
                         {admissionsData.steps.map((step, index) => (
                             <motion.div key={index} className="relative flex items-start mb-8" custom={index} variants={itemVariants}>
@@ -467,7 +453,6 @@ const Facilities = () => {
     );
 };
 
-
 const CoCurricular = () => (
     <Section id="cocurricular" className="bg-white">
         <SectionTitle>Co-Curricular & Sports</SectionTitle>
@@ -481,12 +466,10 @@ const CoCurricular = () => (
                     custom={i}
                 >
                     <div className="card-inner">
-                        {/* Card Front */}
                         <div className="card-face card-front">
                             <div className="text-6xl text-red-600">{activity.icon}</div>
                             <h3 className="mt-4 font-poppins text-2xl font-bold text-charcoal">{activity.name}</h3>
                         </div>
-                        {/* Card Back */}
                         <div className="card-face card-back">
                             <img src={activity.image} alt={activity.name} className="absolute inset-0 w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-black/60 flex items-center justify-center p-4">
@@ -525,7 +508,7 @@ const Gallery = () => {
                     <motion.div
                         key={src}
                         className="overflow-hidden rounded-xl shadow-lg"
-                        layout // Animate layout changes when tab switches
+                        layout
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: index * 0.05 }}
@@ -538,14 +521,13 @@ const Gallery = () => {
     );
 };
 
-
 const Testimonials = () => {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
             setIndex(prev => (prev + 1) % testimonialsData.length);
-        }, 5000); // Change slide every 5 seconds
+        }, 5000);
         return () => clearInterval(timer);
     }, []);
 
@@ -601,7 +583,6 @@ const Contact = () => (
                     <p className="flex items-center gap-4"><Mail className="text-red-600" /><span>info@fortuneworldschool.com</span></p>
                 </div>
                 <div className="mt-8">
-                     {/* USER: Replace with a real, custom-styled Google Map embed */}
                     <img src="https://placehold.co/600x400/CCCCCC/FFFFFF?text=Google+Map+Placeholder" alt="Map" className="rounded-xl shadow-lg w-full"/>
                 </div>
             </motion.div>
@@ -651,7 +632,6 @@ const Footer = () => (
                 </div>
                 <div>
                     <h3 className="font-poppins text-xl font-bold mb-4">Connect With Us</h3>
-                    {/* USER: Replace # with your actual social media links */}
                     <div className="flex gap-4">
                         <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">F</a>
                         <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">I</a>
@@ -667,8 +647,6 @@ const Footer = () => (
     </footer>
 );
 
-
-// --- The Main App Component ---
 export default function App() {
   const [showButton, setShowButton] = useState(false);
 
