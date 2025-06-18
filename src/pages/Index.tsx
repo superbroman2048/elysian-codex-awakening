@@ -5,6 +5,7 @@ import { PersonalizationModal } from '@/components/PersonalizationModal';
 import { ControlCog } from '@/components/ControlCog';
 import { LivingArchives } from '@/components/LivingArchives';
 import { FloatingParticles } from '@/components/FloatingParticles';
+import { CerebralNexus } from '@/components/CerebralNexus';
 
 const Index = () => {
   const [userPath, setUserPath] = useState<string | null>(null);
@@ -49,6 +50,9 @@ const Index = () => {
           
           {/* Chapter II: The Living Archives */}
           <LivingArchives />
+          <CerebralNexus />
+
+
           
           {/* Disclaimer Footer */}
           <footer className="border-t border-lunar-teal/20 bg-abyssal-blue/80 backdrop-blur-sm">
