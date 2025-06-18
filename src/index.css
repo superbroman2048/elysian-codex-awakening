@@ -73,7 +73,7 @@
     @apply bg-lunar-teal text-abyssal-blue px-8 py-4 rounded-lg font-exo font-semibold tracking-mind;
     @apply transition-all duration-300 ease-out;
     @apply hover:bg-alchemic-gold hover:text-abyssal-blue hover:shadow-lg hover:shadow-lunar-teal/20;
-    @apply transform hover:translateZ-5 hover:scale-105;
+    @apply transform hover:scale-105 hover:-translate-y-1;
     box-shadow: 0 0 20px rgba(97, 232, 225, 0.3);
   }
 
