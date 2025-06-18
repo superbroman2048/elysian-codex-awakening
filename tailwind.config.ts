@@ -53,21 +53,16 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Elysian Codex Color Architecture
-				'abyssal-blue': '#020818',
-				'lunar-teal': '#61E8E1',
-				'alchemic-gold': '#F4D03F',
-				'parchment-white': '#FDFBF5',
+				// Fortune World School Color Architecture
+				'energetic-red': '#FF0000',
+				'deep-crimson': '#990000',
+				'warm-beige': '#F5F5DC',
+				'off-white': '#F8F8F8',
+				'charcoal-grey': '#333333',
 			},
 			fontFamily: {
-				'exo': ['Exo', 'sans-serif'], // The 'Mind' - Headlines
-				'sora': ['Sora', 'sans-serif'], // The 'Heart' - Body text
-			},
-			letterSpacing: {
-				'mind': '1px', // For Exo headlines
-			},
-			lineHeight: {
-				'heart': '1.7', // For Sora body text
+				'poppins': ['Poppins', 'sans-serif'], // Headlines
+				'nunito': ['Nunito Sans', 'sans-serif'], // Body text
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -91,25 +86,36 @@ export default {
 						height: '0'
 					}
 				},
-				'float': {
-					'0%, 100%': { transform: 'translateY(0px)' },
-					'50%': { transform: 'translateY(-20px)' }
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
 				},
-				'glow-pulse': {
-					'0%, 100%': { opacity: '0.5' },
-					'50%': { opacity: '1' }
+				'helix-rotate': {
+					'0%': { transform: 'rotateY(0deg)' },
+					'100%': { transform: 'rotateY(360deg)' }
 				},
-				'particle-drift': {
-					'0%': { transform: 'translate(0, 0) rotate(0deg)' },
-					'100%': { transform: 'translate(100px, -100px) rotate(360deg)' }
+				'particle-float': {
+					'0%, 100%': { transform: 'translateY(0px) translateX(0px)' },
+					'50%': { transform: 'translateY(-20px) translateX(10px)' }
+				},
+				'count-up': {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'float': 'float 6s ease-in-out infinite',
-				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
-				'particle-drift': 'particle-drift 20s linear infinite'
+				'fade-in': 'fade-in 0.6s ease-out',
+				'helix-rotate': 'helix-rotate 20s linear infinite',
+				'particle-float': 'particle-float 6s ease-in-out infinite',
+				'count-up': 'count-up 2s ease-out'
 			}
 		}
 	},
