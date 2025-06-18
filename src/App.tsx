@@ -1,13 +1,41 @@
-// src/App.tsx
 
-import FortuneWorldSchoolPage from './pages/Index';
+import React from 'react';
+import StickyBanner from './components/StickyBanner';
+import Navigation from './components/Navigation';
+import HeroBanner from './components/HeroBanner';
+import AboutUs from './components/AboutUs';
+import Academics from './components/Academics';
+import Admissions from './components/Admissions';
+import Facilities from './components/Facilities';
+import CoCurricular from './components/CoCurricular';
+import EventsNews from './components/EventsNews';
+import Gallery from './components/Gallery';
+import Testimonials from './components/Testimonials';
+import ContactFooter from './components/ContactFooter';
+import CursorTrail from './components/CursorTrail';
+import BackToTop from './components/BackToTop';
 
-// This is the main App component.
-// We've removed the unnecessary React Router and other providers
-// to simplify the project and fix the build issue on Lovable.dev.
-// It now directly renders our single, beautiful landing page.
 function App() {
-  return <FortuneWorldSchoolPage />;
+  return (
+    <div className="min-h-screen bg-warm-beige">
+      <CursorTrail />
+      <StickyBanner />
+      <Navigation />
+      <main>
+        <HeroBanner />
+        <AboutUs />
+        <Academics />
+        <Admissions />
+        <Facilities />
+        <CoCurricular />
+        <EventsNews />
+        <Gallery />
+        <Testimonials />
+        <ContactFooter />
+      </main>
+      <BackToTop />
+    </div>
+  );
 }
 
 export default App;
