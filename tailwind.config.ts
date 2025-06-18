@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,16 +53,21 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+				// Elysian Codex Color Architecture
+				'abyssal-blue': '#020818',
+				'lunar-teal': '#61E8E1',
+				'alchemic-gold': '#F4D03F',
+				'parchment-white': '#FDFBF5',
+			},
+			fontFamily: {
+				'exo': ['Exo', 'sans-serif'], // The 'Mind' - Headlines
+				'sora': ['Sora', 'sans-serif'], // The 'Heart' - Body text
+			},
+			letterSpacing: {
+				'mind': '1px', // For Exo headlines
+			},
+			lineHeight: {
+				'heart': '1.7', // For Sora body text
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +90,26 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-20px)' }
+				},
+				'glow-pulse': {
+					'0%, 100%': { opacity: '0.5' },
+					'50%': { opacity: '1' }
+				},
+				'particle-drift': {
+					'0%': { transform: 'translate(0, 0) rotate(0deg)' },
+					'100%': { transform: 'translate(100px, -100px) rotate(360deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 6s ease-in-out infinite',
+				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+				'particle-drift': 'particle-drift 20s linear infinite'
 			}
 		}
 	},
